@@ -28,10 +28,10 @@ public class MonthConversion {
      * @return the name of the respective month
      */
     public String getName(Integer monthNumber) {
-        if (myMap.containsKey(monthNumber)) {
+        try{
             return myMap.get(monthNumber);
-        } else {
-            throw new NullPointerException();
+        } catch (NullPointerException e){
+            return null;
         }
     }
 
@@ -39,19 +39,17 @@ public class MonthConversion {
      * @param monthName - name of month
      * @return - the ordinal of the month in the year
      */
-    public int getNumber(String monthName) {
+    public Integer getNumber(String monthName) {
         try {
-            if (isValidMonth(monthName)) {
-                for (Map.Entry<Integer, String> entry : this.myMap.entrySet()) {
-                    if (entry.getValue().equals(monthName)) {
-                        return entry.getKey();
-                    }
+            for (Map.Entry<Integer, String> entry : this.myMap.entrySet()) {
+                if (entry.getValue().equals(monthName)) {
+                    return entry.getKey();
                 }
             }
         }catch (NullPointerException e){
-            return (Integer) null;
+            return null;
         }
-        return (Integer) null;
+        return null;
     }
 
     /**
